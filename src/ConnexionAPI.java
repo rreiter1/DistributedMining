@@ -34,7 +34,7 @@ public class ConnexionAPI {
         return response.toString();
     }
 
-    public String sendPostRequest(String endpoint, String requestBody) throws IOException {
+    public boolean sendPostRequest(String endpoint, String requestBody) throws IOException {
         String urlString = baseUrl + "/" + endpoint;
         URL url = new URL(urlString);
 
@@ -73,6 +73,6 @@ public class ConnexionAPI {
         }
         in.close();
 
-        return response.toString();
+        return true;
     }
 }

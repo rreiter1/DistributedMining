@@ -73,18 +73,16 @@ public class LauncherServeur {
                                     String[] parts = response.split(" ");
                                     String hash = parts[1];
                                     String nonce = parts[2];
-                                    //String nonceHex = Long.toHexString(Long.parseLong(nonce));
-
 
                                     // Construire le corps de la requête pour valider le travail
                                     String requestBody = String.format("{\"d\":%d,\"n\":\"%s\",\"h\":\"%s\"}", difficulty, nonce, hash);
 
                                     System.out.println("Request Body: " + requestBody);
                                     try {
-                                        String validateResponse = api.sendPostRequest("validate_work", requestBody);
+                                        boolean validateResponse = api.sendPostRequest("validate_work", requestBody);
                                         System.out.println("Réponse de validate_work : " + validateResponse);
-                                        if (validateResponse.startsWith("2")) {   //  si le code retour du webService commence par 2 alors
-                                            sendCancelle();                         //  on stop la rechercher des autre worker
+                                        if (validateResponse) {   //  si le code retour du webService commence par 2 alors
+                                            sendCancelle();      //  on stop la rechercher des autre worker
                                         }
                                     } catch (IOException e) {
                                         System.out.println("Erreur lors de la validation du travail : " + e.getMessage());
