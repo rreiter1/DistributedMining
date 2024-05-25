@@ -41,4 +41,4 @@ Une fois que le serveur et les workers sont en cours d'exécution, vous pouvez u
 ## Auteurs
 
 - REITER Romain
-- Chelh Yacine
+- CHELH Yacine
